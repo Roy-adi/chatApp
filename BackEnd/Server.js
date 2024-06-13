@@ -6,7 +6,8 @@ import connectToMongoDB from "./Db/ConnectDb.js";
 const app = express();
 process.setMaxListeners(15);
 app.use(cors({
-    
+	origin: 'http://localhost:3000', 
+	credentials: true
 }))
 
 app.use(express.json({limit: "16kb"}))

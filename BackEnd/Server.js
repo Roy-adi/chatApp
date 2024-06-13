@@ -12,14 +12,16 @@ app.use(cors({
 app.use(express.json({limit: "16kb"}))
 app.use(express.urlencoded({extended: true, limit: "16kb"}))
 app.use(express.static("public"))
+app.use(cookieParser());
 
 dotenv.config();
 
 
 import AuthRoutes from "./Routes/AuthRoute.js";
-
+import MessageRoute from "./Routes/MessageRoute.js";
 
 app.use("/api/auth", AuthRoutes);
+app.use("/api/messages", MessageRoute);
 
 
 

@@ -3,7 +3,10 @@ import dotenv from 'dotenv'
 import cors from "cors"
 import cookieParser from "cookie-parser"
 import connectToMongoDB from "./Db/ConnectDb.js";
-const app = express();
+import { app , server} from './socket/socket.js'
+
+// const app = express();
+
 process.setMaxListeners(15);
 app.use(cors({
 	origin: 'http://localhost:3000', 
@@ -28,7 +31,7 @@ app.use("/api/messages", MessageRoute);
 
 const PORT = process.env.PORT || 5000
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
 	connectToMongoDB();
 	console.log(`Server Running on port ${PORT}`);
 });

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-	background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("/bg.png");
+	background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("/chatbg.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -57,3 +57,32 @@ body {
 		transform: translate3d(4px, 0, 0);
 	}
 }
+
+
+@media (max-width: 768px) {
+	/* Adjust Sidebar for mobile view */
+	.sidebar {
+		width: 100%;
+		height: auto;
+	}
+
+	/* Adjust MessageContainer for mobile view */
+	.message-container {
+		width: 100%;
+	}
+
+	/* Ensure input and button are aligned */
+	.message-input-container {
+		flex-direction: column;
+	}
+
+	.message-input-container input {
+		width: 100%;
+		margin-bottom: 0.5rem;
+	}
+
+	.message-input-container button {
+		width: 100%;
+	}
+}
+

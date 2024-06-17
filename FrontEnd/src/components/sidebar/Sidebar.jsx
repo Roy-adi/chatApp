@@ -94,115 +94,114 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="border-r border-slate-500 p-4 flex flex-col w-1/5">
-      <SearchInput />
-      <button
-        onClick={handleSearchFriendClick}
-        className="mt-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
-      >
-        Search Friend
-      </button>
-      <div className="divider px-3"></div>
-      <Conversations />
-      <div className="mt-4 flex justify-between items-center">
-        <LogoutButton />
-        <button
-          onClick={handleNotificationClick}
-          className="ml-4 p-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition flex items-center"
-        >
-          <FaBell className="w-4 h-4 mr-2" />
-          
-        </button>
-      </div>
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg w-11/12 md:w-1/3 relative">
-            <button
-              onClick={handleCloseModal}
-              className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 transition"
-            >
-              <FaTimes className="w-5 h-5" />
-            </button>
-            <h2 className="text-xl font-semibold mb-4">Search for Friends</h2>
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={handleSearchChange}
-              placeholder="Type a name..."
-              className="w-full p-3 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <ul className="max-h-60 overflow-y-auto">
-              {searchResults.length > 0 ? (
-                searchResults.map((result) => (
-                  <li
-                    key={result._id}
-                    className="flex items-center justify-between mb-2 p-2 hover:bg-gray-100 rounded transition"
-                  >
-                    <div className="flex items-center">
-                      <img
-                        src={result.profilePic}
-                        alt={result.fullName}
-                        className="w-8 h-8 rounded-full mr-2"
-                      />
-                      <span>{result.fullName}</span>
-                    </div>
-                    <button
-                      onClick={() => handleAddFriend(result._id)}
-                      className="p-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
-                    >
-                      <FaUserPlus className="w-4 h-4" />
-                    </button>
-                  </li>
-                ))
-              ) : (
-                <p className="text-gray-500">No results found</p>
-              )}
-            </ul>
-          </div>
-        </div>
-      )}
+    <div className="sidebar border-r border-slate-500 p-4 flex flex-col md:w-1/5 w-full">
+			<SearchInput />
+			<button
+				onClick={handleSearchFriendClick}
+				className="mt-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+			>
+				Search Friend
+			</button>
+			<div className="divider px-3"></div>
+			<Conversations />
+			<div className="mt-4 flex justify-between items-center">
+				<LogoutButton />
+				<button
+					onClick={handleNotificationClick}
+					className="ml-4 p-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition flex items-center"
+				>
+					<FaBell className="w-4 h-4 mr-2" />
+				</button>
+			</div>
+			{isModalOpen && (
+				<div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+					<div className="bg-white p-6 rounded-lg w-11/12 md:w-1/3 relative">
+						<button
+							onClick={handleCloseModal}
+							className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 transition"
+						>
+							<FaTimes className="w-5 h-5" />
+						</button>
+						<h2 className="text-xl font-semibold mb-4">Search for Friends</h2>
+						<input
+							type="text"
+							value={searchTerm}
+							onChange={handleSearchChange}
+							placeholder="Type a name..."
+							className="w-full p-3 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+						/>
+						<ul className="max-h-60 overflow-y-auto">
+							{searchResults.length > 0 ? (
+								searchResults.map((result) => (
+									<li
+										key={result._id}
+										className="flex items-center justify-between mb-2 p-2 hover:bg-gray-100 rounded transition"
+									>
+										<div className="flex items-center">
+											<img
+												src={result.profilePic}
+												alt={result.fullName}
+												className="w-8 h-8 rounded-full mr-2"
+											/>
+											<span>{result.fullName}</span>
+										</div>
+										<button
+											onClick={() => handleAddFriend(result._id)}
+											className="p-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
+										>
+											<FaUserPlus className="w-4 h-4" />
+										</button>
+									</li>
+								))
+							) : (
+								<p className="text-gray-500">No results found</p>
+							)}
+						</ul>
+					</div>
+				</div>
+			)}
 
-      {isNotificationModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg w-11/12 md:w-1/3 relative">
-            <button
-              onClick={handleCloseNotificationModal}
-              className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 transition"
-            >
-              <FaTimes className="w-5 h-5" />
-            </button>
-            <h2 className="text-xl font-semibold mb-4">Friend Requests</h2>
-            <ul className="max-h-60 overflow-y-auto">
-              {friendRequests.length > 0 ? (
-                friendRequests.map((request) => (
-                  <li
-                    key={request._id}
-                    className="flex items-center justify-between mb-2 p-2 hover:bg-gray-100 rounded transition"
-                  >
-                    <div className="flex items-center">
-                      <img
-                        src={request.senderId.profilePic}
-                        alt={request.senderId.fullName}
-                        className="w-8 h-8 rounded-full mr-2"
-                      />
-                      <span>{request.senderId.fullName}</span>
-                    </div>
-                    <button
-                      onClick={() => handleAcceptRequest(request.senderId._id)}
-                      className="p-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
-                    >
-                      Accept Request
-                    </button>
-                  </li>
-                ))
-              ) : (
-                <p className="text-gray-500">No friend requests found</p>
-              )}
-            </ul>
-          </div>
-        </div>
-      )}
-    </div>
+			{isNotificationModalOpen && (
+				<div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+					<div className="bg-white p-6 rounded-lg w-11/12 md:w-1/3 relative">
+						<button
+							onClick={handleCloseNotificationModal}
+							className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 transition"
+						>
+							<FaTimes className="w-5 h-5" />
+						</button>
+						<h2 className="text-xl font-semibold mb-4">Friend Requests</h2>
+						<ul className="max-h-60 overflow-y-auto">
+							{friendRequests.length > 0 ? (
+								friendRequests.map((request) => (
+									<li
+										key={request._id}
+										className="flex items-center justify-between mb-2 p-2 hover:bg-gray-100 rounded transition"
+									>
+										<div className="flex items-center">
+											<img
+												src={request.senderId.profilePic}
+												alt={request.senderId.fullName}
+												className="w-8 h-8 rounded-full mr-2"
+											/>
+											<span>{request.senderId.fullName}</span>
+										</div>
+										<button
+											onClick={() => handleAcceptRequest(request.senderId._id)}
+											className="p-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
+										>
+											Accept Request
+										</button>
+									</li>
+								))
+							) : (
+								<p className="text-gray-500">No friend requests found</p>
+							)}
+						</ul>
+					</div>
+				</div>
+			)}
+		</div>
   );
 };
 

@@ -31,10 +31,10 @@ app.use("/api/auth", AuthRoutes);
 app.use("/api/messages", MessageRoute);
 
 
-app.use(express.static(path.join(__dirname, "/frontend/dist")));
+app.use(express.static(path.join(__dirname, "/FrontEnd/dist")));
 
 app.get("*", (req, res) => {
-	res.sendFile(path.join(__dirname, "Frontend", "dist", "index.html"));
+	res.sendFile(path.join(__dirname, "FrontEnd", "dist", "index.html"));
 });
 
 

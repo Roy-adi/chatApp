@@ -15,7 +15,7 @@ const Login = () => {
 
 	const loginUser = async (userData) => {
         try {
-            const response = await axios.post("http://localhost:5000/api/auth/login", userData,{ withCredentials: true, });
+            const response = await axios.post("/api/auth/login", userData,{ withCredentials: true, });
 			setSignupData(response.data)
 			console.log(response.data,'success')
 			localStorage.setItem("chat-user", JSON.stringify(response.data));

@@ -9,7 +9,7 @@ const Conversations = () => {
 
  const getConversations = async () => {
     try {
-      const response = await axios.get("/auth/friends", {
+      const response = await axios.get("/api/auth/friends", {
         withCredentials: true, // Include credentials (cookies) in the request
       });
       const data = response.data;

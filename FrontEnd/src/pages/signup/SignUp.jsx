@@ -25,7 +25,7 @@ const SignUp = () => {
 
 	const signupUser = async (userData) => {
         try {
-            const response = await axios.post("http://localhost:5000/api/auth/signup", userData);
+            const response = await axios.post("/api/auth/signup", userData);
 			setSignupData(response.data)
 			console.log(response.data,'success')
 			localStorage.setItem("chat-user", JSON.stringify(response.data));

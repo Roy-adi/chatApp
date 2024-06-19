@@ -10,7 +10,7 @@ const LogoutButton = () => {
     const logout = async () => {
         setLoading(true); // Set loading to true when logout starts
         try {
-            const response = await axios.post("http://localhost:5000/api/auth/logout");
+            const response = await axios.post("/api/auth/logout");
             localStorage.removeItem("chat-user");
             setAuthUser(null);
             return response.data;

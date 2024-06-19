@@ -30,7 +30,7 @@ const Sidebar = () => {
   const searchFriends = async (query) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/searchFriend",
+        "/api/auth/searchFriend",
         {
           keyword_search: query,
         },
@@ -45,7 +45,7 @@ const Sidebar = () => {
   const handleAddFriend = async (friendId) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/send-friend-request",
+        "/api/auth/send-friend-request",
         {
           friendId: friendId,
         },
@@ -62,7 +62,7 @@ const Sidebar = () => {
     setIsNotificationModalOpen(true);
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/auth/friend-requests",
+        "/api/auth/friend-requests",
         { withCredentials: true }
       );
       setFriendRequests(response.data);
@@ -74,7 +74,7 @@ const Sidebar = () => {
   const handleAcceptRequest = async (senderId) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/accept-friend-request",
+        "/api/auth/accept-friend-request",
         {
           senderId: senderId,
         },

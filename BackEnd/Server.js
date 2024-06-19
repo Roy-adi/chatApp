@@ -12,7 +12,7 @@ const __dirname = path.resolve();
 
 process.setMaxListeners(15);
 app.use(cors({
-	origin: 'http://localhost:3000', 
+	origin: 'https://chatapp-gfry.onrender.com', 
 	credentials: true
 }))
 

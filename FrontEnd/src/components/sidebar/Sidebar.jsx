@@ -4,7 +4,7 @@ import { FaTimes, FaUserPlus, FaBell } from "react-icons/fa"; // Importing Font 
 import Conversations from "./Conversations";
 import LogoutButton from "./LogoutButton";
 import SearchInput from "./SearchInput";
-
+import { toast } from "react-hot-toast";
 const Sidebar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -51,7 +51,9 @@ const Sidebar = () => {
         },
         { withCredentials: true }
       );
-      alert(response.data.message);
+						toast.success(response.data.message);
+						setIsModalOpen(false);
+						setSearchTerm("");
     } catch (error) {
       console.error("Error sending friend request:", error);
       alert("Failed to send friend request.");
@@ -66,6 +68,7 @@ const Sidebar = () => {
         { withCredentials: true }
       );
       setFriendRequests(response.data);
+						
     } catch (error) {
       console.error("Error fetching friend requests:", error);
     }
@@ -80,9 +83,11 @@ const Sidebar = () => {
         },
         { withCredentials: true }
       );
-      alert(response.data.message);
+      // alert(response.data.message);
+						toast.success(response.data.message);
       // Refresh the friend requests list after accepting a request
       handleNotificationClick();
+						
     } catch (error) {
       console.error("Error accepting friend request:", error);
       alert("Failed to accept friend request.");
